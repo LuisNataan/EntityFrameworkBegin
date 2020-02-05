@@ -15,6 +15,8 @@ namespace Entity
         public TipoVeiculo TipoVaga { get; set; }
         public bool EhCoberta { get; set; }
 
+        public virtual ICollection<Movimentacao> Movimentacoes { get; set; }
+
         public double CalcularPreco()
         {
             double precoBase = 3;

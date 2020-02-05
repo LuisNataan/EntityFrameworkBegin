@@ -29,6 +29,8 @@ namespace DAO
         {
             //Remove a convenção que pluraliza em inglês o nome das tabelas.
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //Remove a convenção de delete on cascade
+            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             //Exemplo de criação de convenção customizável
             //modelBuilder.Conventions.Add<HandleConvention>();
@@ -45,6 +47,15 @@ namespace DAO
             modelBuilder.Properties()
                         .Where(c => c.PropertyType == typeof(string))
                         .Configure(c => c.IsRequired().IsUnicode(false));
+
+            //Configuração global que determina que toda
+            //propriedade DateTime deve será mapeada para 
+            //datetime2.
+            //Lembrando que é possível sobrescrever este comportamento
+            //utilizando configurações locais na classes EntityTypeConfiguration<T>
+            modelBuilder.Properties()
+            .Where(c => c.PropertyType == typeof(DateTime))
+            .Configure(c => c.HasColumnType("datetime2"));
 
             //Irá comparar as suas entidades (que estão encapsuladas nos DbSet<T> acima)
             //com a estrutura do banco. Se a base não existir, o EF irá criar. Se a base existir,

@@ -15,6 +15,7 @@ namespace Entity
         public string CPF { get; set; }
         public DateTime DataNascimento { get; set; }
         public bool Ativo { get; set; }
+        public virtual ICollection<Movimentacao> Movimentacoes{ get; set; }
 
     }
 }

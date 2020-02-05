@@ -16,7 +16,7 @@ namespace DAO.Mappings
             this.Property(macarrao => macarrao.Placa).IsFixedLength().HasMaxLength(8);
             this.Property(goiaba => goiaba.Modelo).HasMaxLength(50);
 
-
+            this.HasRequired(c => c.Vaga).WithMany(c => c.Movimentacoes).WillCascadeOnDelete(false);
         }
 
     }
